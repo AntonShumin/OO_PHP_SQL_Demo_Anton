@@ -33,9 +33,7 @@ if(isset($_POST['submit'])) {
         <link href="../stylesheets/main.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div id="header">
-            <h1>Photo Gallery</h1>
-        </div>
+        <?php include_layout_template('admin_header.php'); ?>
         <div id="main">
             <h2>Staff Login</h2>
             <?php echo output_message($message); ?>
@@ -61,9 +59,7 @@ if(isset($_POST['submit'])) {
                 </table>
             </form>
         </div>
-        <div id="footer">
-            Copyright <?php echo date("Y", time()); ?>, S.Anton
-        </div>
+        <?php include_layout_template('admin_footer.php'); ?>
     </body>
 </html>
 
