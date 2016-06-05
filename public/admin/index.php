@@ -6,8 +6,6 @@ if(!$session->is_logged_in()) {
 }
 ?>
 
-<?php
-
 <html>
     <head>
         <title>Photo Gallery</title>

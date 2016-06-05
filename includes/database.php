@@ -1,13 +1,18 @@
 <?php
-require_once("config.php");
+require_once(LIB_PATH.DS."config.php");
 
 
 class MySQLDatabase {
    
     private $connection;
+    public $last_query;
+    private $magic_quotes_active;
+    private $real_escape_string_exists;
     
     function __construct() {
         $this->open_connection();
+        $this->magic_quotes_active = get_magic_quotes_gpc();
+        $this->real_escape_string_exists = function_exists("mysql_real_escape_string");
     }
 
     public function open_connection(){
@@ -17,8 +22,8 @@ class MySQLDatabase {
                 mysqli_connect_error() .
                 " (" . mysqli_connect_errno() . ")"               
             );
-        }  
-    }
+        }
+    }  
     
     public function close_connection(){
         if(isset($this->connection)){
@@ -28,10 +33,28 @@ class MySQLDatabase {
     }
     
     public function query($sql) {
+        $this->last_query = $sql;
         $result = mysqli_query($this->connection,$sql);
         $this->confirm_query($result);
         return $result;
     }
+    
+    /*
+    public function escape_value($value){
+        if($this->real_escape_string_exists){
+            if($this->magic_quotes_active) {
+                $value = stripslashes($value);
+            }
+            $value = mysql_real_escape_string($value);
+        } else
+            if(!$this->magicquotes_active) {
+                $value = addslashes ($value);
+            }
+        }
+        //return $value;
+        return null;
+    }
+    */
     
     private function confirm_query($result){
         if(!$result){
