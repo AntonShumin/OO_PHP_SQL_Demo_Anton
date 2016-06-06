@@ -24,6 +24,8 @@ img {
     border: none; 
 }
 
+
+
 table, tr, td, tr { 
     border-collapse: collapse; 
     vertical-align: top; 
@@ -36,10 +38,11 @@ a {
 }
 
 #header { 
-    height: 70px; 
+    height: 60px; 
     text-align: left; 
-    background: #1A446C; 
+    background: #003366; 
     color: #D4E6F4; 
+    min-width: 600px;
 }
 
 #header h1 { 
@@ -49,20 +52,45 @@ a {
 
 /* Note: IE 5 & 6 begrijpen geen min-height */
 #main { 
-    min-height: 600px; 
+    min-height: 400px; 
     width: 100%; 
-    background: #EEE4B9;
+    background: #F0F0F0      ;
     padding: 2em;
+    
+    padding-top: 1px;
 }
 
 #footer { 
     height: 2em; 
     padding: 1em; 
     text-align: center; 
-    background: #1A446C; 
-    color: #D4E6F4; 
+    background: #E0E0E0 ; 
+    color: darkgray; 
 }
 
 table.bordered tr th, table.bordered tr td { 
     border: 1px solid #000000; 
+}
+
+
+.frame{
+    height: auto;
+    width: auto;
+    max-width: 1100px;
+    min-width: 600px;
+    min-height: 400px; 
+    /*border: 1px solid blue;*/
+    margin: auto;
+    
+}
+
+.frame_head{
+    max-width: 1100px;
+    margin: auto;
+}
+
+.centr{
+    display: table;
+    margin: 20 auto;
+    text-align: center;
 }
