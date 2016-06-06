@@ -8,5 +8,9 @@ if(!$session->is_logged_in()) {
 
 <?php include_layout_template('admin_header.php'); ?>
 
+<html>
+    Admin index page
+</html>
+
 <?php include_layout_template('admin_footer.php'); ?>
 

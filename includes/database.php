@@ -39,30 +39,15 @@ class MySQLDatabase {
         return $result;
     }
     
-    /*
-    public function escape_value($value){
-        if($this->real_escape_string_exists){
-            if($this->magic_quotes_active) {
-                $value = stripslashes($value);
-            }
-            $value = mysql_real_escape_string($value);
-        } else
-            if(!$this->magicquotes_active) {
-                $value = addslashes ($value);
-            }
-        }
-        //return $value;
-        return null;
-    }
-    */
     
     private function confirm_query($result){
         if(!$result){
-            die("Database query failed.");
+            //die("Database query failed.");
+            echo "db query failed";
         }
     }
     
-    public function mysql_prep($string){
+    public function escape_value($string){
         $escaped_string = mysqli_real_escape_string($this->connection,$string);
         return $escaped_string;
     }

@@ -24,7 +24,7 @@ class User extends DatabaseObject {
         $username = $database->escape_value($username);
         $password = $database->escape_value($password);
         
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users ";
         $sql .= "WHERE username = '{$username}' ";
         $sql .= "AND password = '{$password}' ";
         $sql .= "LIMIT 1";
@@ -32,7 +32,24 @@ class User extends DatabaseObject {
         return !empty($result_array) ? array_shift($result_array) : false;
     }
     
+    //CRUD
     
+    public function create(){
+        global $database;
+        $sql = "INSERT INTO users (";
+        $sql .= "username,password, first_name, last_name";
+        $sql .= ") VALUES ('";
+        $sql .= $database->escape_value($this->username) . "','";
+        $sql .= $database->escape_value($this->username) . "','";
+        $sql .= $database->escape_value($this->username) . "','";
+        $sql .= $database->escape_value($this->username) . "')";
+        if($database->query($sql)) {
+            $this->id = $database->insert_id();
+            return true;    
+        } else {
+            return false;
+        }
+    }
     
 }
 

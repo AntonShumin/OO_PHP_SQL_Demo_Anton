@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
     
     //check the database to see if the password exist
     $found_user = User::authenticate($username,$password);
-    
+    echo "here its ok";
     if($found_user){
     $session->login($found_user);
     redirect_to("index.php");
