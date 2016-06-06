@@ -51,6 +51,19 @@ class User extends DatabaseObject {
         }
     }
     
+    //UPDATE users SET username='var', password='var2' , WHERE id=$varX
+    public function update() {
+        global $database;
+        $sql = "UPDATE users SET ";
+		$sql .= "username='". $database->escape_value($this->username) ."', ";
+		$sql .= "password='". $database->escape_value($this->password) ."', ";
+		$sql .= "first_name='". $database->escape_value($this->first_name) ."', ";
+		$sql .= "last_name='". $database->escape_value($this->last_name) ."' ";
+		$sql .= "WHERE id=" . $database->escape_value($this->id);
+        $database->query($sql);
+        return ($database->affected_rows() == 1) ? true : false;
+    }
+    
 }
 
 ?>
