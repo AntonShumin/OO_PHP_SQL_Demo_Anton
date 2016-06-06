@@ -34,7 +34,11 @@ class User extends DatabaseObject {
     
     //CRUD
     
-    public function create(){
+    public function save() { 
+        return isset($this->id) ? $this->update() : $this->create();
+    }
+    
+    protected function create(){
         global $database;
         $sql = "INSERT INTO users (";
         $sql .= "username, password, first_name, last_name";
@@ -52,7 +56,7 @@ class User extends DatabaseObject {
     }
     
     //UPDATE users SET username='var', password='var2' , WHERE id=$varX
-    public function update() {
+    protected function update() {
         global $database;
         $sql = "UPDATE users SET ";
 		$sql .= "username='". $database->escape_value($this->username) ."', ";

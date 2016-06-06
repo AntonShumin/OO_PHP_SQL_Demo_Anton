@@ -18,9 +18,12 @@ if(!$session->is_logged_in()) {
     $user->create();
     
     Test User->update*/
-    $user = User::find_by_id(5);
-    $user->username = "NewUserName2";
-    $user->update();
+    $user = User::find_by_id(18);
+    $user->username = "NewUserName3";
+    //$user->save(); //todo: error check bij niet bestaande record
+    $isITset = isset($user) ? true : false;
+    echo "Test is " . $isITset;
+
     
 
 ?>
