@@ -43,7 +43,7 @@ class MySQLDatabase {
     private function confirm_query($result){
         if(!$result){
             //die("Database query failed.");
-            echo "db query failed";
+            echo "db query failed" . $result;
         }
     }
     

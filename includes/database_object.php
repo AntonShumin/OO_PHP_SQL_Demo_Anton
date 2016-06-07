@@ -32,7 +32,7 @@ class DatabaseObject{
         return $object;
     }  
     private function has_attribute($attribute){
-        $object_vars = get_object_vars($this);
+        $object_vars = $this->attributes();
         return array_key_exists($attribute,$object_vars);
     }
 }

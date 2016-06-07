@@ -24,8 +24,8 @@ class User extends DatabaseObject {
         $username = $database->escape_value($username);
         $password = $database->escape_value($password);
         
-        $sql = "SELECT * FROM users ";
-        $sql .= "WHERE username = '{$username}' ";
+        $sql = "SELECT * FROM ".self::$table_name;
+        $sql .= " WHERE username = '{$username}' ";
         $sql .= "AND password = '{$password}' ";
         $sql .= "LIMIT 1";
         $result_array = self::find_by_sql($sql);
@@ -35,12 +35,35 @@ class User extends DatabaseObject {
     //CRUD
     
     public function save() { 
-        return isset($this->id) ? $this->update() : $this->create();
+        //return isset($this->id) ? $this->update() : $this->create();
+        return $this->create();
+    }
+    
+    //dynamisch velden ophalen
+    
+    protected function attributes() {
+        return get_object_vars($this); //haalt alle non static velden op
     }
     
     protected function create(){
         global $database;
-        $sql = "INSERT INTO users (";
+        $aFields = $this->attributes();
+        $sql = "INSERT INTO ".self::$table_name." (";
+        $sql .= join(", ", array_keys($aFields));
+        $sql .= ") VALUES ('";
+        $sql .= join("', '", array_values($aFields));
+        $sql .= "')";
+        if($database->query($sql)) {
+            $this->id = $database->insert_id();
+            return true;    
+        } else {
+            return false;
+        }
+    } //Join, alias implode($glue,$pieces), 
+    /*
+    protected function create(){
+        global $database;
+        $sql = "INSERT INTO ".self::$table_name." (";
         $sql .= "username, password, first_name, last_name";
         $sql .= ") VALUES ('";
         $sql .= $database->escape_value($this->username) . "','";
@@ -54,11 +77,12 @@ class User extends DatabaseObject {
             return false;
         }
     }
+    */
     
     //UPDATE users SET username='var', password='var2' , WHERE id=$varX
     protected function update() {
         global $database;
-        $sql = "UPDATE users SET ";
+        $sql = "UPDATE ".self::$table_name." SET ";
 		$sql .= "username='". $database->escape_value($this->username) ."', ";
 		$sql .= "password='". $database->escape_value($this->password) ."', ";
 		$sql .= "first_name='". $database->escape_value($this->first_name) ."', ";
@@ -70,8 +94,8 @@ class User extends DatabaseObject {
     
     public function delete() {
         global $database;
-        $sql = "DELETE FROM users ";
-        $sql .= "WHERE id=" . $database->escape_value($this->id);
+        $sql = "DELETE FROM ".self::$table_name;
+        $sql .= " WHERE id=" . $database->escape_value($this->id);
         $sql .= " LIMIT 1";
         $database->query($sql);
         return ($database->affected_rows() == 1) ? true : false;
