@@ -5,6 +5,7 @@ require_once('initialize.php');
 class User extends DatabaseObject {
 
     protected static $table_name="users";
+    protected static $db_fields =['id','username','password','first_name','last_name'];
     public $id;
     public $username;
     public $password;
@@ -42,7 +43,13 @@ class User extends DatabaseObject {
     //dynamisch velden ophalen
     
     protected function attributes() {
-        return get_object_vars($this); //haalt alle non static velden op
+        $attributes = [];
+        foreach(self::$db_fields as $field){
+            if(property_exists($this,$field)){
+                $attributes[$field] = $this->$field;
+            }
+        }
+        return $attributes;
     }
     
     protected function clean_attributes() {

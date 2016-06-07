@@ -14,7 +14,7 @@ if(!$session->is_logged_in()) {
 /* Test user->create() */
 
     $user = new User();
-    $user->id = "18";
+    $user->id = "19";
     $user->username = "ThirdDynmicTest";
     $user->password = "pass";
     $user->first_name = "first";
