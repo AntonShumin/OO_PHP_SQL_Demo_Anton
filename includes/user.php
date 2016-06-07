@@ -45,13 +45,22 @@ class User extends DatabaseObject {
         return get_object_vars($this); //haalt alle non static velden op
     }
     
+    protected function clean_attributes() {
+        global $database;
+        $clean_array = array();
+        foreach($this->attributes() as $key =>$value) {
+            $clean_array[$key] = $database->escape_value($value);
+        }
+        return $clean_array;
+    }
+    
     protected function create(){
         global $database;
-        $aFields = $this->attributes();
+        $attributes = $this->clean_attributes();
         $sql = "INSERT INTO ".self::$table_name." (";
-        $sql .= join(", ", array_keys($aFields));
+        $sql .= join(", ", array_keys($attributes));
         $sql .= ") VALUES ('";
-        $sql .= join("', '", array_values($aFields));
+        $sql .= join("', '", array_values($attributes));
         $sql .= "')";
         if($database->query($sql)) {
             $this->id = $database->insert_id();
@@ -82,12 +91,20 @@ class User extends DatabaseObject {
     //UPDATE users SET username='var', password='var2' , WHERE id=$varX
     protected function update() {
         global $database;
+        $attributes = $this->clean_attributes();
+        $attribute_pairs = array();
+        foreach($attribute as $key => $value) {
+            $attribute_pairs[] = "{$key}='{$value}'";
+        }
         $sql = "UPDATE ".self::$table_name." SET ";
+        $sql .= join(", ", $attribute_pairs);
+        /*
 		$sql .= "username='". $database->escape_value($this->username) ."', ";
 		$sql .= "password='". $database->escape_value($this->password) ."', ";
 		$sql .= "first_name='". $database->escape_value($this->first_name) ."', ";
 		$sql .= "last_name='". $database->escape_value($this->last_name) ."' ";
-		$sql .= "WHERE id=" . $database->escape_value($this->id);
+        */
+        $sql .= " WHERE id=" . $database->escape_value($this->id);
         $database->query($sql);
         return ($database->affected_rows() == 1) ? true : false;
     }
