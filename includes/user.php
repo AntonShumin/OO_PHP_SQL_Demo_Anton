@@ -68,6 +68,15 @@ class User extends DatabaseObject {
         return ($database->affected_rows() == 1) ? true : false;
     }
     
+    public function delete() {
+        global $database;
+        $sql = "DELETE FROM users ";
+        $sql .= "WHERE id=" . $database->escape_value($this->id);
+        $sql .= " LIMIT 1";
+        $database->query($sql);
+        return ($database->affected_rows() == 1) ? true : false;
+    }
+    
 }
 
 ?>
