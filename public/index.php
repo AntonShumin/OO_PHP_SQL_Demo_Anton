@@ -4,6 +4,7 @@ require_once("../includes/initialize.php");
 //redirect_to("admin/login.php");
 ?>
 
+<?php include_layout_template('admin_header.php'); ?>
 <html>
     <head>
         <title>S.Anton Demo</title>
@@ -21,6 +22,14 @@ require_once("../includes/initialize.php");
                 </div>
             </div> 
         </div>
-        
+        <div class="jq_slider">
+            <p>Bootstrap 3</p>
+        </div>
+        <div class="section1">
+            test
+        </div>
+        <div class="section2">
+            test
+        </div>
     </body>
 </html>
