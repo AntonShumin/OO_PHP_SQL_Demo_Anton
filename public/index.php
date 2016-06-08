@@ -17,19 +17,26 @@ require_once("../includes/initialize.php");
         <div class="bgimage">
             <div class="bgcover">
                 <div class="container">
-                    <h1>PHP Photo Gallery Demo test</h1>
+                    <h1>PHOTO GALLERY DEMO</h1>
                     <p>Content binnenkort beschikbaar.</p>
                 </div>
             </div> 
         </div>
         <div class="jq_slider">
-            <p>Bootstrap 3</p>
+            <p>| Bootstrap 3 | jQuery | PHP 5.6 | mySQL |</p>
         </div>
         <div class="section1">
-            test
+            <h1>CREATED WITH</h1>
+            <p>following programming techniques</p>
         </div>
         <div class="section2">
-            test
+            <h1>TOP PICTURES</h1>
+            <p>using mySQL database</p>
         </div>
+        <div class="section1">
+            <h1>FANCY DYNAMIC STUFF</h1>
+            <p>if you love jQuery and AJAX (who doesnt)</p>
+        </div>
+        <?php include_layout_template('admin_footer.php'); ?>
     </body>
 </html>

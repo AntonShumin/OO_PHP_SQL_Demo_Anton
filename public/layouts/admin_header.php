@@ -6,7 +6,7 @@
     </head>
     <body>
         <div id="header">
-            <h1>PHP DE</h1>
+            <h1>PHP DEMO</h1>
         </div>
     </body>
 </html>
