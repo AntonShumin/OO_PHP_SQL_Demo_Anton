@@ -13,9 +13,14 @@ require_once("../includes/initialize.php");
         <link href="stylesheets/main.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div class="container-fluid">
-            <h1>PHP Photo Gallery Demo</h1>
-            <p>Content binnenkort beschikbaar.</p>
+        <div class="bgimage">
+            <div class="bgcover">
+                <div class="container">
+                    <h1>PHP Photo Gallery Demo test</h1>
+                    <p>Content binnenkort beschikbaar.</p>
+                </div>
+            </div> 
         </div>
+        
     </body>
 </html>
