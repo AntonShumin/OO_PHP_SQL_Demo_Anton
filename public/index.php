@@ -18,7 +18,7 @@ require_once("../includes/initialize.php");
             <div class="bgcover">
                 <div class="container">
                     <h1>PHOTO GALLERY DEMO</h1>
-                    <p>Content binnenkort beschikbaar.</p>
+                    <p>Content binnenkort beschikbaar. Under construction</p>
                 </div>
             </div> 
         </div>
@@ -28,14 +28,28 @@ require_once("../includes/initialize.php");
         <div class="section1">
             <h1>CREATED WITH</h1>
             <p>following programming techniques</p>
+            <div class="frame row">
+                <div class="col-sm-4">
+                    <p>Bootstrap</p>
+                    <img class="icon" src="images/logos/bootstrap.png"/>
+                </div>
+                <div class="col-sm-4">
+                    <p>PHP & mySQL</p>
+                    <img class="icon" src="images/logos/php-mysql-logo.png"/>
+                </div>
+                <div class="col-sm-4">
+                    <p>jQuery</p>
+                    <img class="icon" src="images/logos/jquery.png"/>
+                </div>
+            </div>
         </div>
         <div class="section2">
             <h1>TOP PICTURES</h1>
-            <p>using mySQL database</p>
+            <p>using popular mySQL database</p>
         </div>
         <div class="section1">
             <h1>FANCY DYNAMIC STUFF</h1>
-            <p>if you love jQuery and AJAX (who doesnt)</p>
+            <p>if you love dynamic jQuery and AJAX (who doesnt)</p>
         </div>
         <?php include_layout_template('admin_footer.php'); ?>
     </body>
