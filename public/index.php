@@ -12,19 +12,24 @@ require_once("../includes/initialize.php");
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <!-- Main CSS -->
         <link href="stylesheets/main.css" media="all" rel="stylesheet" type="text/css" />
+        <!-- jQuery -->
+        <script type="text/javascript" src="javascripts/jquery-1.12.4.js"></script>
     </head>
     <body>
         <div class="bgimage">
             <div class="bgcover">
                 <div class="container">
+                    <!--
                     <h1>PHOTO GALLERY DEMO</h1>
                     <p>Content binnenkort beschikbaar. Under construction</p>
+                    -->
                 </div>
             </div> 
         </div>
         <div class="jq_slider">
             <p>| Bootstrap 3 | jQuery | PHP 5.6 | mySQL |</p>
         </div>
+        <!-- --------- SECTION ONE ---------------------->
         <div class="section1">
             <h1>CREATED WITH</h1>
             <p>following programming techniques</p>
@@ -43,10 +48,12 @@ require_once("../includes/initialize.php");
                 </div>
             </div>
         </div>
+        <!-- --------- SECTION TWO ---------------------->
         <div class="section2">
             <h1>TOP PICTURES</h1>
             <p>using popular mySQL database</p>
         </div>
+        <!-- --------- SECTION THREE ---------------------->
         <div class="section1">
             <h1>FANCY DYNAMIC STUFF</h1>
             <p>if you love dynamic jQuery and AJAX (who doesnt)</p>

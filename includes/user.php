@@ -12,6 +12,29 @@ class User extends DatabaseObject {
     public $first_name;
     public $last_name;
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* ------------------------------
+        Veelvoorkomende DB methodes
+        Later migreren
+    */ -------------------------------
     public function full_name() {
         if(isset($this->first_name) && isset($this->last_name) ){
             return $this->first_name . " " . $this->last_name ;
@@ -36,11 +59,9 @@ class User extends DatabaseObject {
     //CRUD
     
     public function save() { 
-        //return isset($this->id) ? $this->update() : $this->create();
         return $this->create();
     }
     
-    //dynamisch velden ophalen
     
     protected function attributes() {
         $attributes = [];
@@ -75,27 +96,8 @@ class User extends DatabaseObject {
         } else {
             return false;
         }
-    } //Join, alias implode($glue,$pieces), 
-    /*
-    protected function create(){
-        global $database;
-        $sql = "INSERT INTO ".self::$table_name." (";
-        $sql .= "username, password, first_name, last_name";
-        $sql .= ") VALUES ('";
-        $sql .= $database->escape_value($this->username) . "','";
-        $sql .= $database->escape_value($this->password) . "','";
-        $sql .= $database->escape_value($this->first_name) . "','";
-        $sql .= $database->escape_value($this->last_name) . "')";
-        if($database->query($sql)) {
-            $this->id = $database->insert_id();
-            return true;    
-        } else {
-            return false;
-        }
     }
-    */
     
-    //UPDATE users SET username='var', password='var2' , WHERE id=$varX
     protected function update() {
         global $database;
         $attributes = $this->clean_attributes();
@@ -105,12 +107,6 @@ class User extends DatabaseObject {
         }
         $sql = "UPDATE ".self::$table_name." SET ";
         $sql .= join(", ", $attribute_pairs);
-        /*
-		$sql .= "username='". $database->escape_value($this->username) ."', ";
-		$sql .= "password='". $database->escape_value($this->password) ."', ";
-		$sql .= "first_name='". $database->escape_value($this->first_name) ."', ";
-		$sql .= "last_name='". $database->escape_value($this->last_name) ."' ";
-        */
         $sql .= " WHERE id=" . $database->escape_value($this->id);
         $database->query($sql);
         return ($database->affected_rows() == 1) ? true : false;
