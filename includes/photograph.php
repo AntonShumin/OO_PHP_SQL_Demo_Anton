@@ -53,7 +53,7 @@ class Photograph extends DatabaseObject {
             //error check, lijst moet leeg zijn
             if(!empty($this->errors)) { return false; }
             //caption string length check
-            if(strlen($this->caption) <= 255) {
+            if(strlen($this->caption) >= 255) {
                 $this->errors[] = "The caption can only be 255 characters long";
                 return false;
             }
@@ -153,7 +153,7 @@ class Photograph extends DatabaseObject {
         global $database;
         $attributes = $this->clean_attributes();
         $attribute_pairs = array();
-        foreach($attribute as $key => $value) {
+        foreach($attributes as $key => $value) {
             $attribute_pairs[] = "{$key}='{$value}'";
         }
         $sql = "UPDATE ".self::$table_name." SET ";

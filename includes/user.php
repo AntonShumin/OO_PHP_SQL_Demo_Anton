@@ -102,7 +102,7 @@ class User extends DatabaseObject {
         global $database;
         $attributes = $this->clean_attributes();
         $attribute_pairs = array();
-        foreach($attribute as $key => $value) {
+        foreach($attributes as $key => $value) {
             $attribute_pairs[] = "{$key}='{$value}'";
         }
         $sql = "UPDATE ".self::$table_name." SET ";
