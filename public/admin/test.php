@@ -1,41 +1,22 @@
 <?php
 require_once("../../includes/initialize.php");
 
-/*
-if(!$session->is_logged_in()) {
-    redirect_to("login.php");
-}
 
-*/
 ?>
 <?php include_layout_template('admin_header.php'); ?>
 
-<?php
-/* Test user->create() */
 
-    $user = new User();
-    $user->id = "19";
-    $user->username = "ThirdDynmicTest";
-    $user->password = "pass";
-    $user->first_name = "first";
-    $user->last_name = "DeezNu7";
-    $user->save();
-/*    
-    Test User->update
-    $user = User::find_by_id(18);
-    $user->username = "NewUserName3";
-    //$user->save(); //todo: error check bij niet bestaande record
-    $isITset = isset($user) ? true : false;
-    echo "Test is " . $isITset;
-
-    
-$user = User::find_by_id(1);
-$user -> delete();
-*/
-
-    
-
-?>
+<html>
+    <body>
+        <h2>Foto upload test</h2>
+        <form action="test.php" enctype="multipart/form-data" method="post">
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+            <p> <input type="file" name="file_upload" /> </p>
+            <p>Caption: <input type="text" name="caption" value="" /> </p>
+            <input type="submit" name="submit" value="upload" />
+        </form>
+    </body>
+</html>
 
 <?php include_layout_template('admin_footer.php'); ?>
 

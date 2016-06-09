@@ -34,7 +34,7 @@ class User extends DatabaseObject {
     /* ------------------------------
         Veelvoorkomende DB methodes
         Later migreren
-    */ -------------------------------
+    -------------------------------*/ 
     public function full_name() {
         if(isset($this->first_name) && isset($this->last_name) ){
             return $this->first_name . " " . $this->last_name ;

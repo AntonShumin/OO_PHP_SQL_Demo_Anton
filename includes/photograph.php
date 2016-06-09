@@ -1,5 +1,5 @@
 <?php
-require_once('database.php');
+require_once('initialize.php');
     
 class Photograph extends DatabaseObject {
     
@@ -26,7 +26,7 @@ class Photograph extends DatabaseObject {
         UPLOAD_ERR_NO_FILE => "No file",
         UPLOAD_ERR_NO_TMP_DIR => "No temporar directory",
         UPLOAD_ERR_CANT_WRITE => "Can't write to disk",
-        UPLOAD_ERR_EXTENSION = > "file upload sotpped by extension"
+        UPLOAD_ERR_EXTENSION => "file upload sotpped by extension"
     ];
     
     public function attach_file($file) {
@@ -50,9 +50,39 @@ class Photograph extends DatabaseObject {
         if(isset($this->id)) {
             $this->update();
         } else{
-            //error check
+            //error check, lijst moet leeg zijn
             if(!empty($this->errors)) { return false; }
-            $this->create();
+            //caption string length check
+            if(strlen($this->caption) <= 255) {
+                $this->errors[] = "The caption can only be 255 characters long";
+                return false;
+            }
+            //check bestand
+            if(empty($this->filename) || empty($this->temp_path)) {
+                $this->errors[] = "The files location is not available";
+                return false;
+            }
+            //Bestemming
+            $target_path = SITE_ROOT .DS. 'public' .DS. $this->upload_dir .DS. $this->filename;
+            
+            //Check duplicaat
+            if(file_exists($target_path)) {
+                $this->errors[] = "The file {$this->filename} already exists";
+                return false;
+            }
+            
+            //Bestand overzetten van temp naar bestemming
+            if(move_uploaded_file($this->temp_path,$target_path)) {
+                if($this->create()) {
+                    unset($this->temp_path);
+                    return true;
+                }
+                
+            } else {
+                $this->errors[] = "File upload failed. Check write permissions";
+                return false;
+            }
+
         }
     }
     
@@ -78,8 +108,8 @@ class Photograph extends DatabaseObject {
     /* ------------------------------
     Veelvoorkomende DB methodes
     Later migreren
-    */ -------------------------------
-    rotected function attributes() {
+     -------------------------------*/
+    protected function attributes() {
         $attributes = [];
         foreach(self::$db_fields as $field){
             if(property_exists($this,$field)){
