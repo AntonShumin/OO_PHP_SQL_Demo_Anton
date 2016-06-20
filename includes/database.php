@@ -35,15 +35,15 @@ class MySQLDatabase {
     public function query($sql) {
         $this->last_query = $sql;
         $result = mysqli_query($this->connection,$sql);
-        $this->confirm_query($result);
+        $this->confirm_query($result, $sql);
         return $result;
     }
     
     
-    private function confirm_query($result){
+    private function confirm_query($result, $query){
         if(!$result){
             //die("Database query failed.");
-            echo "db query failed" . $result;
+            echo "ERROR: db query failed " . $result. ". Query: ".$query;
         }
     }
     

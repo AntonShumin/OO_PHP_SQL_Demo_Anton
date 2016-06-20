@@ -39,7 +39,7 @@ class Photograph extends DatabaseObject {
             return false;
         } else {
             $this->temp_path = $file['tmp_name'];
-            $this->filename = basename($file['name']); //basename houdt de laatste deel over van de path
+            $this->filename = basename($file['name']); //basename houdt enkel het laatste deel van de path over
             $this->type = $file['type'];
             $this->size = $file['size'];    
             return true;
