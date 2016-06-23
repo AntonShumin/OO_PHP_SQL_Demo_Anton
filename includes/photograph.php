@@ -4,7 +4,7 @@ require_once('initialize.php');
 class Photograph extends DatabaseObject {
     
     protected static $table_name="photographs";
-    protected static $db_fields = ['id','filename','type','size','caption'];
+    protected static $db_fields = ['filename','type','size','caption'];
     
     public $id;
     public $filename;
@@ -47,13 +47,15 @@ class Photograph extends DatabaseObject {
     }
     
     public function save() {
+        //check for write or update
         if(isset($this->id)) {
+            echo "SENDING UPDATE";
             $this->update();
         } else{
             //error check, lijst moet leeg zijn
             if(!empty($this->errors)) { return false; }
             //caption string length check
-            if(strlen($this->caption) >= 255) {
+            if(strlen($this->caption) > 255) {
                 $this->errors[] = "The caption can only be 255 characters long";
                 return false;
             }
@@ -86,7 +88,9 @@ class Photograph extends DatabaseObject {
         }
     }
     
-    
+    public function find_all() {
+        
+    }
     
     
     
@@ -121,17 +125,12 @@ class Photograph extends DatabaseObject {
     
     protected function clean_attributes() {
         global $database;
-        $clean_array = array();
+        $clean_array = [];
         foreach($this->attributes() as $key =>$value) {
             $clean_array[$key] = $database->escape_value($value);
         }
         return $clean_array;
     }
-    /*
-    public function save() { 
-        return $this->create();
-    }
-    */
     
     protected function create(){
         global $database;

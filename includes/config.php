@@ -7,6 +7,6 @@
  define("DB_PASS","test");
  define("DB_NAME","db_phpdemo");
 
-*/
+
 
 ?>

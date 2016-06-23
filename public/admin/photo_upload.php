@@ -24,7 +24,7 @@ if(isset($_POST['submit'])) {
 <html>
     <body style="background-color:white;">
         <h2>Foto upload test</h2>
-        <?php echo output_message($message); ?>
+        <?php echo $message; ?>
         <form action="photo_upload.php"  method="post" enctype="multipart/form-data">
             <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size; ?>" />
             <p> <input type="file" name="file_upload" /> </p>
