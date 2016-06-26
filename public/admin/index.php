@@ -23,10 +23,10 @@ $photos = Photograph::find_all();
             </tr>
             <?php foreach($photos as $photo): ?>
                 <tr>
-                    <td> <img src="" width="100" /> </td>
+                    <td> <img src="../<?php echo $photo->image_path(); ?>" width="100" /> </td>
                     <td> <?= $photo->filename; ?> </td>
                     <td> <?= $photo->caption; ?> </td>
-                    <td> <?= $photo->size; ?> </td>
+                    <td> <?= $photo->size_as_text(); ?> </td>
                     <td> <?= $photo->type; ?> </td>
                 </tr>
             <?php endforeach; ?>

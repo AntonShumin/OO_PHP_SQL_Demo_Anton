@@ -14,7 +14,7 @@ class Photograph extends DatabaseObject {
     
     
     private $temp_path;
-    protected $upload_dir="images";
+    protected $upload_dir="images/uploaded";
     public $errors=array(); //loggen van fouten
     
     //beschrijving http://php.net/manual/en/features.file-upload.errors.php
@@ -88,13 +88,26 @@ class Photograph extends DatabaseObject {
         }
     }
     
-    public function find_all() {
-        
+    public static function find_all() {
+        return self::find_by_sql("SELECT * FROM ".self::$table_name);
     }
     
     
+    public function image_path() {
+        return $this->upload_dir.DS.$this->filename;
+    }
     
-    
+    public function size_as_text() {
+        if($this->size < 1024) {
+            return "{$this->size} bytes";
+        } elseif ($this->size < 1048576 ) {
+            $size_kb = round($this->size/1024);
+            return "{$size_kb} KB";
+        } else {
+            $size_mb = round ($this->size/1048576, 1);
+            return "{$size_mb} MB";
+        }
+    }
     
     
     
