@@ -20,6 +20,7 @@ $photos = Photograph::find_all();
                 <th>Caption</th>
                 <th>Size</th>
                 <th>Type</th>
+                <th>&nbsp;</th>
             </tr>
             <?php foreach($photos as $photo): ?>
                 <tr>
@@ -28,6 +29,7 @@ $photos = Photograph::find_all();
                     <td> <?= $photo->caption; ?> </td>
                     <td> <?= $photo->size_as_text(); ?> </td>
                     <td> <?= $photo->type; ?> </td>
+                    <td> <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a> </td>
                 </tr>
             <?php endforeach; ?>
         </table>
