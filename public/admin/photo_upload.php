@@ -1,7 +1,6 @@
 <?php
 require_once("../../includes/initialize.php");
 
-$message ="";
 $max_file_size = 1048576;
     
 if(isset($_POST['submit'])) {
@@ -11,7 +10,8 @@ if(isset($_POST['submit'])) {
     $photo->caption = $_POST['caption'];
     $photo->attach_file($_FILES['file_upload']);
     if($photo->save()) {
-        $message = "Photo uploaded successfully";
+        $session->message("Photo uploaded successfully");
+        redirect_to('index.php');
     } else {
         $message = join("<br/>",$photo->errors);
         //$message = "not working";
